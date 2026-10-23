@@ -1,0 +1,44 @@
+name: Offline PNG QA
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: png-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser-and-node:
+    if: github.repository == 'willailora/png-pack-check'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out source without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned development dependencies
+        run: |
+          python -m pip install --no-cache-dir -r qa/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Generate synthetic fixtures and run Node checks
+        run: |
+          python qa/generate_fixtures.py
+          node qa/node-test.cjs
+      - name: Run real offline Chromium checks
+        run: python qa/test.py
+      - name: Print synthetic QA evidence to logs
+        if: always()
+        run: python qa/print_evidence.py

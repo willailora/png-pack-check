@@ -1,0 +1,8 @@
+qa/fixtures/
+qa/browser-manifest.json
+qa/sample-report.csv
+qa/sample-contact-sheet.png
+qa/mobile.png
+screenshot.png
+__pycache__/
+.venv/
