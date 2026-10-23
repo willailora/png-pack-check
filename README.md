@@ -1,16 +1,26 @@
 # PNG Pack Check 1.0.0
 
-A free, offline preflight tool for small PNG asset packs. Optional tips only: https://ko-fi.com/ailorawill. This project is distributed free, with no paid tier or feature gates. Tips are voluntary and do not purchase support, updates or extra features. No account, payment, subscription, server, API key, installation, telemetry or network library is required.
+A free, offline checker for small PNG asset packs. For game developers, artists and asset-pack creators who want to check image sizes, transparency and exact-file duplicates before sharing a pack.
 
-## Use
+**[Download the free app ZIP](https://github.com/willailora/png-pack-check/releases/download/v1.0.0/png-pack-check-1.0.0.zip)** · [Release notes and checksums](https://github.com/willailora/png-pack-check/releases/tag/v1.0.0)
 
-1. Extract this ZIP. Open `index.html` in a modern desktop browser.
-2. Choose or drop PNG files. Each selection replaces the previous batch.
-3. Review dimensions, PNG alpha-channel/tRNS metadata, decoded transparent-pixel counts and exact-file repeats.
-4. Export a CSV report or a PNG contact sheet. Exports are new downloads; originals are never changed. If your browser blocks a download, use its normal download permission controls.
-5. Clear results or close the tab when finished.
+Choose `png-pack-check-1.0.0.zip` for the ready-to-use app, not a source archive. No account, payment, subscription, server, API key or installation is required. There is no paid tier or feature gate.
 
-The app reads selected files in memory only. It does not upload, delete or modify originals. The optional Ko-fi link opens an external site only when clicked. Exported filenames may be sensitive: review exports before sharing them.
+## Start in 3 steps
+
+1. Download and extract the ZIP, then open `index.html` in a modern desktop browser. The app works offline.
+2. Choose or drop PNG files. Review dimensions, PNG alpha-channel/tRNS metadata, decoded transparent-pixel counts and exact-file repeats. Each selection replaces the previous batch.
+3. Export a CSV report or a PNG contact sheet. Exports are new downloads; originals are never changed. If your browser blocks a download, use its normal download permission controls.
+
+Clear results or close the tab when finished.
+
+![Actual Chromium test screenshot using synthetic PNG fixtures](docs/screenshot.png)
+
+This genuine screenshot comes from the successful test run; the failed-file cards intentionally demonstrate rejection of invalid fixtures.
+
+## Files and privacy
+
+The app reads selected files in memory only. It does not upload, delete or modify originals, and uses no telemetry or network libraries. The optional Ko-fi link opens an external site only when clicked. Exported filenames may be sensitive: review exports before sharing them.
 
 ## Results
 
@@ -35,10 +45,6 @@ The 23 Node.js checks also passed: parser/header/CRC rejection, metadata, cancel
 
 Firefox, Safari, native Windows use, real mobile hardware, low-memory hardware and every possible PNG encoding have not been tested. A mobile-sized Chromium viewport is not a mobile-device test. Spreadsheet-specific import behavior and full accessibility conformance are not certified. Passing these checks is not a warranty.
 
-![Actual Chromium test screenshot using synthetic PNG fixtures](docs/screenshot.png)
-
-This genuine screenshot comes from the successful test run; the failed-file cards intentionally demonstrate rejection of invalid fixtures.
-
 ## Development checks
 
 The [source repository](https://github.com/willailora/png-pack-check) contains editable source, test scripts and CI configuration. The small user download contains the app, this guide, license and screenshot; it does not require test dependencies.
@@ -47,4 +53,8 @@ For development, see `qa/BROWSER-CHECKS.md` in the source repository. Generate f
 
 ## Source and terms
 
-`index.html` contains all editable HTML, CSS and JavaScript. No build step. `LICENSE.txt` contains the MIT license. Provided AS IS, without warranty, to the extent permitted by applicable law. No custom support or ongoing updates are promised. This does not limit rights that applicable law does not allow to be waived.
+`index.html` contains all editable HTML, CSS and JavaScript. No build step. [LICENSE.txt](LICENSE.txt) contains the MIT license. Provided AS IS, without warranty, to the extent permitted by applicable law. No custom support or ongoing updates are promised. This does not limit rights that applicable law does not allow to be waived.
+
+## Optional support
+
+If this tool is useful, you can [leave an optional tip on Ko-fi](https://ko-fi.com/ailorawill). The app is free; tipping is never required. Tips are voluntary and do not purchase support, updates or extra features.
