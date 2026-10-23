@@ -4,6 +4,8 @@ from PIL import Image
 import json, csv, io, os, runpy, re
 from playwright.sync_api import sync_playwright, expect
 BASE=Path(__file__).resolve().parent.parent
+# A failed run must never expose a committed historical pass as fresh evidence.
+(BASE/'qa'/'browser-manifest.json').unlink(missing_ok=True)
 FIX=BASE/'qa'/'fixtures'
 runpy.run_path(str(BASE/'qa'/'generate_fixtures.py'))
 results=[]

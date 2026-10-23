@@ -1,4 +1,4 @@
-# Actual browser verification (not yet run successfully)
+# Browser verification
 
 Run only in a test environment where local browser execution is permitted. These are development dependencies, not app dependencies. No server or publication is needed.
 
@@ -10,7 +10,7 @@ Run only in a test environment where local browser execution is permitted. These
 
 Alternatively, set CHROMIUM_PATH to an existing official Chromium executable before step 5. Linux browser dependencies may also be needed; follow the official Playwright setup documentation for that environment. Do not circumvent permission denials.
 
-The browser runs the actual local HTML with networking set offline. The suite checks real decoding and alpha counts, duplicate hashes, rejected corrupt/oversized/APNG files, CSV download escaping, PNG contact-sheet download dimensions, batch limits, clear, cancellation/reselection and a mobile-width layout. It records page errors and network requests. It writes qa/browser-manifest.json only if every assertion passes, plus exported samples and real screenshots. Failure exits nonzero. No passed report or screenshot exists until the suite actually completes. Node's qa/manifest.json remains separate to avoid overwriting the actual non-browser evidence.
+The browser runs the actual local HTML with networking set offline. The suite checks real decoding and alpha counts, duplicate hashes, rejected corrupt/oversized/APNG files, CSV download escaping, PNG contact-sheet download dimensions, batch limits, clear, cancellation/reselection and a mobile-width layout. It records page errors and network requests. It writes qa/browser-manifest.json only if every assertion passes, plus exported samples and real screenshots. Failure exits nonzero. The recorded run on 2026-10-23 passed all 19 browser checks in Chromium 151.0.7922.34 on Linux. See qa/browser-manifest.json and https://github.com/willailora/png-pack-check/actions/runs/39911264499. Future runs must complete before claiming a new pass. Node's qa/manifest.json remains separate to avoid overwriting the actual non-browser evidence.
 
 Manual checks after the suite:
 - Open index.html directly, not just served over HTTP. Pick and drop real PNGs; verify visual previews against originals.
@@ -26,6 +26,6 @@ Record exact browser/version/platform, date, passed/failed checks and unresolved
 
 ## GitHub Actions
 
-`.github/workflows/qa.yml` runs only on push or manual dispatch, on the standard `ubuntu-latest` runner with a 10-minute job timeout. It requests contents-read permission only and does not persist checkout credentials. It uses no secrets, artifact uploads, Actions cache, paid/larger runners or automatic result commits. A repository guard restricts execution to `willailora/png-pack-check`. It logs synthetic screenshots (maximum 512 KiB each) as base64 between explicit BEGIN/END markers; these are QA fixtures, never user files. A missing browser manifest is not a pass. Log evidence alone does not change the preview label.
+`.github/workflows/qa.yml` runs only on push or manual dispatch, on the standard `ubuntu-latest` runner with a 10-minute job timeout. It requests contents-read permission only and does not persist checkout credentials. It uses no secrets, artifact uploads, Actions cache, paid/larger runners or automatic result commits. A repository guard restricts execution to `willailora/png-pack-check`. It logs synthetic screenshots (maximum 512 KiB each) as base64 between explicit BEGIN/END markers; these are QA fixtures, never user files. A missing browser manifest is not a pass. Inspect successful checks and their scope before making release-support claims.
 
 Development dependencies are pinned to versions verified on the official registry: https://pypi.org/project/pillow/12.3.0/ and https://pypi.org/project/playwright/1.62.0/.

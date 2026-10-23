@@ -29,11 +29,21 @@ Files are processed sequentially. Full-size image canvases are released after ea
 
 ## Verification status
 
-23 automated Node.js checks passed on 2026-10-23 against the actual inline JavaScript: parser/header/CRC rejection, metadata, cancellation, count/byte/extension guards, CSV escaping, SHA-256 duplicate bookkeeping (browser decode stubbed) and static no-network checks. See `qa/manifest.json`.
+On 2026-10-23, all 19 real-browser checks passed in Chromium 151.0.7922.34 on Linux, headless, opening the app directly from a local file with networking offline. Coverage includes real pixel transparency counts, duplicate hashes, corrupt/oversized/APNG rejection, CSV and contact-sheet downloads, cancellation/reselection, a four-million-pixel scan, and mobile-width overflow. No JavaScript errors or network requests were recorded. [Verified test run](https://github.com/willailora/png-pack-check/actions/runs/39911264499), tested commit `88d59b7f5ba52684cdcad40c2e5fab287f7ebd72`.
 
-Browser execution remains UNVERIFIED pending the real-browser test suite. No screenshot or browser-tested claim is included. Browser rendering, real pixel scanning, contact-sheet output, downloads, interaction and mobile hardware have not been verified. Treat this as a preview build until browser QA passes.
+The 23 Node.js checks also passed: parser/header/CRC rejection, metadata, cancellation, count/byte/extension guards, CSV escaping, SHA-256 duplicate bookkeeping (decode stubbed in that suite) and static no-network checks. The source repository includes `qa/browser-manifest.json` and `qa/manifest.json` as separate evidence.
 
-`qa/test.py` contains the intended browser regression suite and fixture generator (Python Pillow, Playwright, local Chromium required). Its inclusion does not mean the suite passed. See `qa/BROWSER-CHECKS.md` for exact browser setup and verification steps. Generate fixtures with `python qa/generate_fixtures.py`, then run `node qa/node-test.cjs` for the non-browser suite. Run `python qa/test.py` only in a suitable browser test environment; it writes a separate `qa/browser-manifest.json` after all assertions pass. Test dependencies are development-only and are not needed to use the app.
+Firefox, Safari, native Windows use, real mobile hardware, low-memory hardware and every possible PNG encoding have not been tested. A mobile-sized Chromium viewport is not a mobile-device test. Spreadsheet-specific import behavior and full accessibility conformance are not certified. Passing these checks is not a warranty.
+
+![Actual Chromium test screenshot using synthetic PNG fixtures](docs/screenshot.png)
+
+This genuine screenshot comes from the successful test run; the failed-file cards intentionally demonstrate rejection of invalid fixtures.
+
+## Development checks
+
+The [source repository](https://github.com/willailora/png-pack-check) contains editable source, test scripts and CI configuration. The small user download contains the app, this guide, license and screenshot; it does not require test dependencies.
+
+For development, see `qa/BROWSER-CHECKS.md` in the source repository. Generate fixtures with `python qa/generate_fixtures.py`, then run `node qa/node-test.cjs`. With the documented Python dependencies and Chromium installed, run `python qa/test.py`; it writes a separate browser manifest only after all assertions pass. Test dependencies are development-only and are not needed to use the app.
 
 ## Source and terms
 

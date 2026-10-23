@@ -21,6 +21,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Clear historical local test outputs
+        run: rm -f qa/manifest.json qa/browser-manifest.json screenshot.png qa/mobile.png qa/sample-contact-sheet.png
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

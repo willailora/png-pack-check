@@ -1,0 +1,93 @@
+{
+  "browser": "Chromium 151.0.7922.34",
+  "platform": "Linux, headless local file://",
+  "date": "2026-10-23T06:24:54.265079+00:00",
+  "checks": [
+    {
+      "test": "RGB opaque dimensions and alpha",
+      "passed": true
+    },
+    {
+      "test": "RGBA full transparency",
+      "passed": true
+    },
+    {
+      "test": "Partial alpha",
+      "passed": true
+    },
+    {
+      "test": "Exact SHA256 duplicate",
+      "passed": true
+    },
+    {
+      "test": "Bad signature, extension, CRC, dimensions, bytes rejected",
+      "passed": true
+    },
+    {
+      "test": "Palette tRNS transparency",
+      "passed": true
+    },
+    {
+      "test": "APNG rejected",
+      "passed": true
+    },
+    {
+      "test": "CSV formula filename neutralized",
+      "passed": true
+    },
+    {
+      "test": "CSV edge cases",
+      "passed": true
+    },
+    {
+      "test": "Contact sheet PNG export",
+      "passed": true
+    },
+    {
+      "test": "Count guard preserves results",
+      "passed": true
+    },
+    {
+      "test": "Total byte guard",
+      "passed": true
+    },
+    {
+      "test": "Clear releases results",
+      "passed": true
+    },
+    {
+      "test": "Cancellation keeps partial results",
+      "passed": true
+    },
+    {
+      "test": "Reselect after cancellation",
+      "passed": true
+    },
+    {
+      "test": "Four-million-pixel decode and scan",
+      "passed": true
+    },
+    {
+      "test": "Mobile width no horizontal overflow",
+      "passed": true
+    },
+    {
+      "test": "No JS errors",
+      "passed": true
+    },
+    {
+      "test": "No network requests",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "network_requests": [],
+  "not_tested": [
+    "Firefox",
+    "Safari",
+    "mobile hardware",
+    "low-memory hardware",
+    "every PNG encoding"
+  ],
+  "note": "Limits are conservative guards, not a guaranteed peak-memory cap."
+}

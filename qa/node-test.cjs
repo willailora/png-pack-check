@@ -1,6 +1,8 @@
 // Dependency-free JS parser/CSV tests; run qa/test.py to generate fixtures first.
 const fs=require('fs'),vm=require('vm'),path=require('path');
 const base=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(base,'index.html'),'utf8');
+// Remove only generated local evidence; a failed run must not leave a stale pass.
+fs.rmSync(path.join(__dirname,'manifest.json'),{force:true});
 const elements=new Map();const el=()=>({classList:{add(){},remove(){}},append(){},replaceChildren(){},style:{},textContent:''});
 const context=vm.createContext({console,Image:class {},setTimeout,Uint32Array,Uint8Array,DataView,Map,Error,Array,String,Math,Promise,crypto:require('crypto').webcrypto,document:{getElementById(id){if(!elements.has(id))elements.set(id,el());return elements.get(id)},createElement:el},window:{addEventListener(){}}});
 vm.runInContext(html.match(/<script>([\s\S]*)<\/script>/)[1],context);
