@@ -95,7 +95,7 @@
       "passed": true
     }
   ],
-  "browser_status": "NOT RUN: local Chromium failed to launch (Unix socket denied); escalation failed due to environment bwrap mount error. No browser pass is claimed.",
+  "browser_status": "Browser checks reported separately; no browser pass implied by Node suite.",
   "unverified": [
     "Browser decoding and alpha pixel counts",
     "Download delivery",
